@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
+    "start": "serve ./dist",
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -12,6 +12,7 @@
   "dependencies": {
     "astro": "^4.9.2",
     "@astrojs/check": "^0.7.0",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "serve": "^13.0.2"
   }
 }
