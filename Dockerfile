@@ -23,3 +23,6 @@ RUN npm run build
 
 # Copy the built app to the Caddy server
 RUN cp -r dist/* /srv/
+
+# Copy the Caddyfile
+COPY ./Caddyfile /etc/caddy/Caddyfile
