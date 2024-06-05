@@ -1,28 +1,12 @@
-FROM caddy:alpine
-
-# Install nodejs and npm
-RUN apk update && apk add --no-cache nodejs npm
-
-# Set the working directory
+FROM node:lts AS runtime
 WORKDIR /app
 
-# Copy the package.json and package-lock.json for npm install
-COPY package*.json ./
-
-# Install the dependencies
-RUN npm install
-
-# Copy the source code
 COPY . .
 
-# Build the app
+RUN npm install
 RUN npm run build
 
-# Copy the built app to the Caddy server
-RUN npm run build
-
-# Copy the built app to the Caddy server
-RUN cp -r dist/* /srv/
-
-# Copy the Caddyfile
-COPY ./Caddyfile /etc/caddy/Caddyfile
+ENV HOST=0.0.0.0
+ENV PORT=4321
+EXPOSE 4321
+CMD node ./dist/server/entry.mjs
